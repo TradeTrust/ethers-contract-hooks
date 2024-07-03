@@ -1,6 +1,6 @@
 import { Contract, ContractTransaction } from "ethers";
 import { useCallback, useState } from "react";
-import { ContractReceipt } from "ethers/contract";
+import { ContractReceipt } from "ethers";
 
 export type ContractFunctionState = "UNINITIALIZED" | "INITIALIZED" | "PENDING_CONFIRMATION" | "CONFIRMED" | "ERROR";
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
@@ -87,7 +87,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
       setState("CONFIRMED");
       setValue(response);
     } catch (e) {
-      setError(e);
+      setError(e as Error);
       setState("ERROR");
     }
   }) as T["functions"][S];
