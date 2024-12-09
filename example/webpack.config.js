@@ -9,10 +9,11 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.join(__dirname, "."),
     compress: true,
     port: 9001,
-    index: "index.html"
+    static: {
+      directory: path.join(__dirname, ".")
+    },
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"]
