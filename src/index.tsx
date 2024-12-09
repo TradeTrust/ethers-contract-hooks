@@ -66,7 +66,7 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
       const receipt = await transaction.wait();
       setState("CONFIRMED");
       setReceipt(receipt);
-    } catch (e) {
+    } catch (e: any) {
       setError(e);
       setState("ERROR");
     }
@@ -86,8 +86,8 @@ export function useContractFunctionHook<T extends Contract, S extends keyof T["f
       const response = await deferredTx;
       setState("CONFIRMED");
       setValue(response);
-    } catch (e) {
-      setError(e as Error);
+    } catch (e: any) {
+      setError(e);
       setState("ERROR");
     }
   }) as T["functions"][S];
